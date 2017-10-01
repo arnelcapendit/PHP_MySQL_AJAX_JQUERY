@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login API</title>
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+
+
+</head>
+<style type="text/css">
+#loginbox{
+	height: 140px;
+	width: 240px;
+	margin: 0 auto;
+	margin-top: 300px;
+}
+
+
+</style>
+<body>
+
+<div id="loginbox">
+	<input id="username" type="text" name="username" placeholder="username">	
+	<br>
+	<input id="password" type="password" name="password" placeholder="password">
+	<br>
+	<button id="signin">Sign In</button>
+</div>
+
+<div id="container"></div>
+
+<script type="text/javascript">
+	$("button").click(function(){
+
+		var username = $("#username").val();
+		var password = $("#password").val();
+
+/*		$.post("server.php", {username:username, password:password}, function(data){
+			if(data != "Wrong login"){
+				$("#loginbox").fadeOut();
+				$("#container").html(data);
+			} else {
+				alert(data);
+				}
+		});*/
+
+
+		$.ajax({
+			type: 'POST',
+			url: 'server.php',
+			data: {
+				'username': username,
+				'password': password,
+			},
+
+			success: function(data){
+				alert(data);
+			}
+		});
+
+
+	});
+
+</script>
+
+</body>
+</html>
